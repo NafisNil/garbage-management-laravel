@@ -28,7 +28,9 @@
 </head>
 <body>
     <div class="card">
+      
         <h2 class="text-center text-success">Sign In</h2>
+        @include('frontend.sessionMsg')
         <form action="{{ route('mobile_form_store') }}" method="POST">
             @csrf
             <div class="mb-3">
