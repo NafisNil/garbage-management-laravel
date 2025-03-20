@@ -15,6 +15,12 @@
   <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('backend') }}/dist/css/adminlte.min.css">
+  <style>
+    .content-header , .content {
+      background-color:#cfedce !important;
+    }
+  
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -67,6 +73,18 @@
       var reader = new FileReader();
       reader.onload = function(e){
         $('#showImage').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(e.target.files['0']);
+    })
+  })
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#image_slider').change(function(e){
+      var reader = new FileReader();
+      reader.onload = function(e){
+        $('#showSliderImage').attr('src', e.target.result);
       }
       reader.readAsDataURL(e.target.files['0']);
     })

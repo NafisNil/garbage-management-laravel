@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: rgb(1, 120, 15)">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -71,18 +71,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('slider.index') }}" class="nav-link {{$route == 'slider.index'?'active':''}}" >
+                <a href="{{ route('general.index') }}" class="nav-link {{$route == 'general.index'?'active':''}}" >
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Slider</p>
+                  <p>General Info</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('event.index') }}" class="nav-link {{$route == 'event.index'?'active':''}}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Events</p>
                 </a>
               </li>
 {{-- 
-              <li class="nav-item">
-                <a href="{{ route('logo.index') }}" class="nav-link {{$route == 'logo.index'?'active':''}}" >
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Logo</p>
-                </a>
-              </li>
+              
 
               <li class="nav-item">
                 <a href="{{ route('about.index') }}" class="nav-link {{$route == 'about.index'?'active':''}}" >

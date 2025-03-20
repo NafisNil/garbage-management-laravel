@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GeneralRequest extends FormRequest
+class EventRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,11 @@ class GeneralRequest extends FormRequest
     {
         return [
             //
-            'logo' => 'mimes:jpg,png,jpeg',
-            'slider_logo' => 'mimes:jpg,png,jpeg'
+            'title' => 'required|max:60',
+            'date' => 'required',
+            'description' => 'required',
+            'logo' => 'mimes:jpg,png,jpeg'
         ];
     }
+    
 }
