@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('road')->nullable();
             $table->string('house')->nullable();
             $table->string('flat')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('phone')->unique()->nullable();
             $table->string('otp')->nullable();
             $table->string('logo')->nullable();
         });

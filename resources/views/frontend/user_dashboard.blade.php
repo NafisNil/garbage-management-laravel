@@ -16,88 +16,93 @@
             justify-content: center;
         }
         .card img {
-            max-width: 80px;
+            max-width: 100px;
             margin: auto;
+        }
+        @media (max-width: 767.98px) {
+            .card {
+                flex: 0 0 48%;
+                margin: 1%;
+            }
+            .col-6 {
+                flex: 0 0 48%;
+                max-width: 48%;
+                margin: 1%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <div class="profile-img me-3"></div>
-                <div>
-                    <h5>{{ @Auth::user()->name }}</h5>
-                    <p class="text-muted">01798XXXXXX</p>
-                </div>
-            </div>
+            @include('frontend.layouts.profile_info')
             <div>
                 <button class="btn btn-outline-secondary">🔔</button>
             </div>
         </div>
         
-        <div class="my-4 p-4 bg-light text-center" style="background:url({{ asset('frontend/image/banner.png') }});background-repeat: no-repeat;
-  background-size: auto;">
+        <div class="my-4 p-4 bg-light text-center" style="background:url({{ asset('frontend/image/banner.png') }});background-repeat: round;
+  background-size: auto; height:120px;">
             
         </div>
 
         <div class="row text-center">
-            <div class="col-md-3 mb-4">
+            <div class="col-md-3 col-6 mb-4">
                 <div class="card p-3">
-                  <a href="bill_month_select.html">
-                    <img src="https://via.placeholder.com/80" alt="Bill Payment">
-                    <p class="mt-2">Bill Payment</p>
+                  <a href="{{ route('bill_payment_form') }}">
+                    <img src="{{ asset('frontend/image/Bill Payment.png') }}" alt="Bill Payment">
+                    
                   </a>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
+            <div class="col-md-3 col-6 mb-4">
                 <div class="card p-3">
                   <a href="complain_form.html">
-                    <img src="https://via.placeholder.com/80" alt="Complaint">
-                    <p class="mt-2">Complaint</p>
+                    <img src="{{ asset('frontend/image/Complaint.png') }}" alt="Complaint">
+                 
                   </a>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
+            <div class="col-md-3 col-6 mb-4">
                 <div class="card p-3">
-                  <a href="event.html">
-                    <img src="https://via.placeholder.com/80" alt="Event">
-                    <p class="mt-2">Event</p>
+                  <a href="{{ route('event.all') }}">
+                    <img src="{{ asset('frontend/image/Event.png') }}" alt="Event">
+                  
                   </a>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
+            <div class="col-md-3 col-6 mb-4">
                 <div class="card p-3">
                   <a href="donation_form.html">
-                    <img src="https://via.placeholder.com/80" alt="Donate">
-                    <p class="mt-2">Donate to an Organization</p>
+                    <img src="{{ asset('frontend/image/Donate to  an Organization.png') }}" alt="Donate">
+                   
                   </a>
                 </div>
             </div>
 
-            <div class="col-md-3 mb-4">
+            <div class="col-md-3 col-6 mb-4">
               <div class="card p-3">
                 <a href="track.html">
-                  <img src="https://via.placeholder.com/80" alt="Donate">
-                  <p class="mt-2">Garbage Truck Track</p>
+                  <img src="{{ asset('frontend/image/Garbage Truck Track.png') }}" alt="Donate">
+                 
                 </a>
               </div>
           </div>
 
-          <div class="col-md-3 mb-4">
+          <div class="col-md-3 col-6 mb-4">
             <div class="card p-3">
               <a href="track.html">
-                <img src="https://via.placeholder.com/80" alt="Donate">
-                <p class="mt-2">Collection Point Nearby</p>
+                <img src="{{ asset('frontend/image/Collection Point Nearby.png') }}" alt="Donate">
+                
               </a>
             </div>
         </div>
 
-        <div class="col-md-3 mb-4">
+        <div class="col-md-3 col-6 mb-4">
           <div class="card p-3">
             <a href="collection_schedule.html">
-              <img src="https://via.placeholder.com/80" alt="Donate">
-              <p class="mt-2">Garbage Collection Schedule</p>
+              <img src="{{ asset('frontend/image/Garbage  Collection Schedule.png') }}" alt="Donate">
+             
             </a>
           </div>
       </div>

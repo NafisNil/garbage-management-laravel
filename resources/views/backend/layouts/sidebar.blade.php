@@ -76,11 +76,18 @@
                   <p>General Info</p>
                 </a>
               </li>
-
+              
               <li class="nav-item">
                 <a href="{{ route('event.index') }}" class="nav-link {{$route == 'event.index'?'active':''}}" >
                   <i class="far fa-circle nav-icon"></i>
                   <p>Events</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('bill.index') }}" class="nav-link {{$route == 'bill.index'?'active':''}}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Bill</p>
                 </a>
               </li>
 {{-- 

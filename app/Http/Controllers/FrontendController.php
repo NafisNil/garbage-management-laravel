@@ -26,13 +26,24 @@ class FrontendController extends Controller
         ]);
         $otp = rand(1000, 9999);
         $userCount = User::count();
-        $user = User::create([
-            'email' => 'demo'.$userCount.'@gmail.com',
-            'name' => 'user',
-            'password' => '12345678',
-            'phone' => $request->phone,
-            'otp' => $otp
-        ]);
+        $user = User::where('phone', $request->phone)->first();
+
+        if ($user) {
+            // User exists, update it
+            $user->update([
+                
+                'otp' => $otp,
+            ]);
+        } else {
+            // User does not exist, create a new one
+            $user = User::create([
+                'phone' => $request->phone,
+                'email' => 'demo' . $userCount . '@gmail.com',
+                'name' => 'user',
+                'password' => '12345678',
+                'otp' => $otp,
+            ]);
+        }
        // dd($user);
        Session::put('user', $user);
        return redirect()->route('otp_form');
@@ -53,6 +64,7 @@ class FrontendController extends Controller
     
         if ($entered_otp == $user->otp) {
             $user->status = 'approved';
+            $user->role = 'user';
             $user->save();
             Auth::login($user);
             return redirect()->route('registration_successful');

@@ -56,11 +56,14 @@
 </head>
 <body>
     <div class="container text-center">
+        <div class="d-flex justify-content-end">
+            <a  href="{{ route('user_dashboard') }}" class="btn btn-outline-secondary btn-sm mb-3">Save later</a>
+        </div>
         @include('frontend.sessionMsg')
-        <form action="{{ route('profile_update_store') }}"  method="POST">
+        <form action="{{ route('profile_update_store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="position-relative d-inline-block">
-                <div class="profile-img" id="profileImg"></div>
+                <div class="profile-img" id="profileImg" style="background-image: url('{{ Auth::user()->logo ? asset('storage/' . Auth::user()->logo) : '' }}');"></div>
                 <div class="edit-icon" onclick="document.getElementById('profileImageInput').click();">✏️</div>
                 <input type="file" id="profileImageInput" style="display: none;" accept="image/*" name="logo" onchange="loadFile(event)">
             </div>

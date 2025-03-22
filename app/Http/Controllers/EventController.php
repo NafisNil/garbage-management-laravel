@@ -19,6 +19,13 @@ class EventController extends Controller
         return view('backend.event.index',['event'=>$event]);
     }
 
+    public function all_event()
+    {
+        //
+        $event = Event::orderBy('id', 'desc')->take(6)->get();
+        return view('frontend.event',['event'=>$event]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
