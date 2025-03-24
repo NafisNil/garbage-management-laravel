@@ -26,6 +26,13 @@ class EventController extends Controller
         return view('frontend.event',['event'=>$event]);
     }
 
+    public function single_event($id)
+    {
+        //
+        $event = Event::find($id);
+        return view('frontend.single_event',['event'=>$event]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

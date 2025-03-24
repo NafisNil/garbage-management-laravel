@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Event Page</title>
+    <title>Event Details - {{$event->title}}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
@@ -11,7 +11,6 @@
             background-color: #f8f9fa;
         }
         .profile-container {
-            text-align: left;
             padding: 20px;
         }
         .profile-header {
@@ -38,17 +37,21 @@
             font-size: 14px;
             color: gray;
         }
-        .card-container {
+        .complaint-card {
+            background-color: #d6f5d6;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #90ee90;
             margin-top: 10px;
         }
-        .custom-card {
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
+        .complaint-title {
+            font-weight: bold;
+            color: #228b22;
         }
-        .custom-card img {
-            width: 100%;
-            height: auto;
+        .complaint-date {
+            float: right;
+            font-size: 14px;
+            color: gray;
         }
         .bottom-nav {
             position: fixed;
@@ -78,16 +81,14 @@
 <div class="profile-container">
     @include('frontend.layouts.profile_info')
 
-    <div class="card-container">
-        @foreach ($event as $item)
-        <div class="custom-card mb-3">
-            <a href="{{ route('event.details', $item->id) }}l">
-            <img src="{{(!empty($item->logo))?URL::to('storage/'.$item->logo):URL::to('image/no_image.png')}}" alt="{{ $item->title }}">
-           </a>
+    <div class="complaint-card">
+        <div>
+            <span class="complaint-title">{{$event->title}}</span>
+            <span class="complaint-date">{{ \Carbon\Carbon::parse($event->date)->format('d F, Y') }}</span>
         </div>
-        @endforeach
-
-
+        <p>
+            {!! $event->description !!}
+        </p>
     </div>
 </div>
 

@@ -90,6 +90,46 @@
                   <p>Bill</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{ route('organization.index') }}" class="nav-link {{$route == 'organization.index'?'active':''}}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Organization</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('donation.index') }}" class="nav-link {{$route == 'donation.index'?'active':''}}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Donation</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('truck.index') }}" class="nav-link {{$route == 'truck.index'?'active':''}}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Truck</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('schedule.index') }}" class="nav-link {{$route == 'schedule.index'?'active':''}}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Schedule</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('complain.index') }}" class="nav-link {{$route == 'complain.index'?'active':''}}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Complains</p>
+                </a>
+              </li>
+
+              {{-- <li class="nav-item">
+                <a href="{{ route('dust.index') }}" class="nav-link {{$route == 'dust.index'?'active':''}}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dust</p>
+                </a>
+              </li> --}}
 {{-- 
               
 
@@ -100,12 +140,7 @@
                 </a>
               </li> --}}
 {{-- 
-              <li class="nav-item">
-                <a href="{{ route('choose.index') }}" class="nav-link {{$route == 'choose.index'?'active':''}}" >
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Why Choose Us</p>
-                </a>
-              </li>
+             
               <li class="nav-item">
                 <a href="{{ route('client.index') }}" class="nav-link {{$route == 'client.index'?'active':''}}" >
                   <i class="far fa-circle nav-icon"></i>

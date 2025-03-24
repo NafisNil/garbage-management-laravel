@@ -7,6 +7,12 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\TruckController;
+use App\Http\Controllers\ScheduleController;
+use  App\Http\Controllers\DustController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/mobile-form', [FrontendController::class, 'mobile_form'])->name('mobile_form');
@@ -16,12 +22,22 @@ Route::post('/otp-form-store', [FrontendController::class, 'otp_form_store'])->n
 Route::get('/registration-successful', [FrontendController::class, 'registration_successful'])->name('registration_successful');
 
 Route::middleware(['auth', 'user'])->group(function () {
-    Route::get('/profile-update', [FrontendController::class, 'profile_update'])->name('profile_update');
+Route::get('/profile-update', [FrontendController::class, 'profile_update'])->name('profile_update');
 Route::post('/profile-update', [UserController::class, 'profile_update_store'])->name('profile_update_store');
 Route::get('/user-dashboard', [UserController::class, 'user_dashboard'])->name('user_dashboard');
 Route::get('/bill-payment-form', [UserController::class, 'bill_payment_form'])->name('bill_payment_form');
 Route::post('/bill-store', [UserController::class, 'bill_store'])->name('bill_store');
 Route::get('/bill-successful', [UserController::class, 'bill_successful'])->name('bill_successful');
+Route::get('/donate-payment-form', [UserController::class, 'donate_payment_form'])->name('donate_payment_form');
+Route::post('/donate-store', [DonationController::class, 'store'])->name('donate_store');
+Route::get('/donation-successful', [UserController::class, 'donation_successful'])->name('donation_successful');
+Route::get('/weekly-schedule', [UserController::class, 'weekly_schedule'])->name('weekly_schedule');
+Route::get('/complain-first', [UserController::class, 'complain_first'])->name('complain_first');
+Route::post('/complain-store', [UserController::class, 'complain_store'])->name('complain_store');
+Route::get('/complain-second/', [UserController::class, 'complain_second'])->name('complain_second');
+Route::post('/complain-update', [UserController::class, 'complain_update'])->name('complain_update');
+Route::get('/complain-successful/', [UserController::class, 'complain_successful'])->name('complain_successful');
+Route::get('/complain-track/{id}', [UserController::class, 'complain_track'])->name('complain_track');
 });
 
 
@@ -34,14 +50,24 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('event-all', [EventController::class, 'all_event'])->name('event.all');
+    Route::get('event-details/{id}', [EventController::class, 'single_event'])->name('event.details');
 });
 
 Route::middleware('auth', 'admin')->group(function () {
     Route::get('bill-index', [BillController::class, 'index'])->name('bill.index');
+    Route::get('complain-index', [AdminController::class, 'complain_index'])->name('complain.index');
+    Route::get('complain-assigned/{id}', [AdminController::class, 'complain_assigned'])->name('complain.assigned');
+  //  Route::get('complain-processed/{id}', [AdminController::class, 'complain_processed'])->name('complain.processed');
+    Route::get('complain-completed/{id}', [AdminController::class, 'complain_completed'])->name('complain.completed');
     Route::resources([
       
       'general' => GeneralController::class,
-      'event' => EventController::class
+      'event' => EventController::class,
+      'organization' => OrganizationController::class,
+      'donation' => DonationController::class,
+      'truck' => TruckController::class,
+      'schedule' => ScheduleController::class,
+      'dust' => DustController::class,
     ]);
 
 });
