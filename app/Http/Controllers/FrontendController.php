@@ -80,4 +80,9 @@ class FrontendController extends Controller
     public function profile_update(){
         return view('frontend.profile_update');
     }
+
+    public function vendor_registration(){
+        $general = General::first();
+        return view('frontend.vendor_registration',['general' => $general]);
+    }
 }

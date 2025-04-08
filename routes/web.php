@@ -20,6 +20,10 @@ Route::get('/otp-form', [FrontendController::class, 'otp_form'])->name('otp_form
 Route::post('/mobile-form-store', [FrontendController::class, 'mobile_form_store'])->name('mobile_form_store');
 Route::post('/otp-form-store', [FrontendController::class, 'otp_form_store'])->name('otp_form_store');
 Route::get('/registration-successful', [FrontendController::class, 'registration_successful'])->name('registration_successful');
+//vendor
+Route::get('/vendor-registration', [FrontendController::class, 'vendor_registration'])->name('vendor_registration');
+Route::post('/vendor-registration-store', [FrontendController::class, 'vendor_registration_store'])->name('vendor_registration_store');
+Route::get('/vendor-registration-successful', [FrontendController::class, 'vendor_registration_successful'])->name('vendor_registration_successful');
 
 Route::middleware(['auth', 'user'])->group(function () {
 Route::get('/profile-update', [FrontendController::class, 'profile_update'])->name('profile_update');
@@ -41,9 +45,7 @@ Route::get('/complain-track/{id}', [UserController::class, 'complain_track'])->n
 });
 
 
-Route::get('/dashboard', function () {
-    return view('backend.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

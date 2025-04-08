@@ -35,9 +35,26 @@
             padding: 10px;
             font-size: 18px;
         }
+        .splash-screen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .splash-screen img {
+            width: 130px;
+            height: 70px;
+        }
     </style>
 </head>
 <body>
+    <div class="splash-screen" id="splashScreen">
+        <img src="{{ asset('frontend/image/Layer_1.png') }}" alt="Logo" >
+    </div>
     <div class="container mt-4">
         <div class="hero-section">
             <img src="{{(!empty($general->slider_logo))?URL::to('storage/'.$general->slider_logo):URL::to('image/no_image.png')}}" alt="Garbage Truck">
@@ -56,5 +73,12 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('splashScreen').style.display = 'none';
+            }, 2000); // Adjust the timeout duration as needed
+        });
+    </script>
 </body>
 </html>

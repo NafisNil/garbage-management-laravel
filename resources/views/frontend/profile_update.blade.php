@@ -65,7 +65,7 @@
             <div class="position-relative d-inline-block">
                 <div class="profile-img" id="profileImg" style="background-image: url('{{ Auth::user()->logo ? asset('storage/' . Auth::user()->logo) : '' }}');"></div>
                 <div class="edit-icon" onclick="document.getElementById('profileImageInput').click();">✏️</div>
-                <input type="file" id="profileImageInput" style="display: none;" accept="image/*" name="logo" onchange="loadFile(event)">
+                <input type="file" id="profileImageInput" style="display: none;" accept="image/*" name="logo" onchange="loadFile(event)"  capture="camera">
             </div>
             <p class="mt-2">{{ Auth::user()->phone }}</p>
         

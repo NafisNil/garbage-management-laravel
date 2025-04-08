@@ -103,7 +103,7 @@
         <span class="text-success">Attachment files:</span>
         <i class="fas fa-paperclip attachment" id="attachmentIcon"></i>
         <span id="fileName" class="text-muted"></span>
-        <input type="file" class="form-control" name="logo" id="logo" style="display: none;">
+        <input type="file" class="form-control" name="logo" id="logo" style="display: none;" accept="image/*" capture="camera">
     </div>
 
    <button type="submit" class="btn btn-outline-success btn-done">Done</button>

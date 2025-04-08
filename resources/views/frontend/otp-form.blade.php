@@ -34,7 +34,7 @@
        
         <h2 class="mb-3">OTP Request</h2>
         <p class="text-muted">Enter below OTP</p>
-  
+        <p class="text-muted">Your OTP : {{$user->otp}}</p>
         @include('frontend.sessionMsg')
         @php
             $generate_otp = $user->otp;
