@@ -31,7 +31,9 @@ class User extends Authenticatable
         'otp',
         'logo',
         'flat',
-        'status'
+        'status',
+        'area',
+        'role',
     ];
 
     /**

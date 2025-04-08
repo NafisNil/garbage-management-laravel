@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vendor Registration</title>
+  <title>Vendor Registration Successful</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
@@ -67,31 +67,10 @@
 
   <div class="form-box">
     <h2 class="form-title">Vendor Registration</h2>
-    @include('backend.sessionMsg')
-    <form action="{{ route('vendor_registration_store') }}" method="POST">
-      @csrf
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="mobile" class="form-label">Mobile Number</label>
-        <input type="tel" id="mobile" name="phone" class="form-control" placeholder="Enter mobile number" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="area" class="form-label">Area</label>
-        <input type="text" id="area" name="area" class="form-control" placeholder="Enter area" required>
-      </div>
-
-      <button type="submit" class="btn btn-submit w-100">Send Request to Authority</button>
-    </form>
+    <div class="alert alert-success text-center">
+      <strong>Registration Successful!</strong>
+      <p>Your registration has been successfully submitted. Please check your email for further instructions.</p>
+    </div>
 
     <div class="login-link">
       Already have access? <a href="{{ route('vendor_login') }}">Login</a>

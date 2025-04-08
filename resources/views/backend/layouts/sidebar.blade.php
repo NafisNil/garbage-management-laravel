@@ -70,6 +70,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              @if (Auth::user()->role == 'sp')
               <li class="nav-item">
                 <a href="{{ route('general.index') }}" class="nav-link {{$route == 'general.index'?'active':''}}" >
                   <i class="far fa-circle nav-icon"></i>
@@ -124,21 +125,23 @@
                 </a>
               </li>
 
-              {{-- <li class="nav-item">
-                <a href="{{ route('dust.index') }}" class="nav-link {{$route == 'dust.index'?'active':''}}" >
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dust</p>
-                </a>
-              </li> --}}
-{{-- 
-              
-
               <li class="nav-item">
-                <a href="{{ route('about.index') }}" class="nav-link {{$route == 'about.index'?'active':''}}" >
+                <a href="{{ route('vendor.index') }}" class="nav-link {{$route == 'vendor.index'?'active':''}}" >
                   <i class="far fa-circle nav-icon"></i>
-                  <p>About Us</p>
+                  <p>Vendor</p>
                 </a>
-              </li> --}}
+              </li>
+
+              @else
+               <li class="nav-item">
+                <a href="{{ route('vendor.bill.index') }}" class="nav-link {{$route == 'vendor.bill.index'?'active':''}}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Bill Collection</p>
+                </a>
+              </li>  
+              @endif
+             
+
 {{-- 
              
               <li class="nav-item">

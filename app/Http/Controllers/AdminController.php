@@ -39,4 +39,29 @@ class AdminController extends Controller
         $data['total_donations'] = Donation::sum('amount');
         return view('backend.index', $data);
     }
+
+    public function vendor_index(){
+        $vendors = User::where('role', 'ci')->get();
+        return view('backend.vendor.index', compact('vendors'));
+    }
+
+    public function vendor_approve($id){
+        $vendor = User::find($id);
+        $vendor->status = 'approved';
+        $vendor->save();
+        return redirect()->back();
+    }
+
+    public function vendor_reject($id){
+        $vendor = User::find($id);
+        $vendor->status = 'pending';
+        $vendor->save();
+        return redirect()->back();
+    }
+    
+    public function vendor_delete($id){
+        $vendor = User::find($id);
+        $vendor->delete();
+        return redirect()->back();
+    }
 }

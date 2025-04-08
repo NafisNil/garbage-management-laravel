@@ -85,4 +85,86 @@ class FrontendController extends Controller
         $general = General::first();
         return view('frontend.vendor_registration',['general' => $general]);
     }
+
+    public function vendor_registration_store(Request $request){
+        $request->validate([
+            'phone' => 'required|digits:11', // Adjust the validation rules as needed
+            'name' => 'required',
+            'email' => 'email|required',
+            'area' => 'required',
+        ]);
+        $otp = rand(1000, 9999);
+        $userCount = User::count();
+        $user = User::where('phone', $request->phone)->first();
+
+        if ($user) {
+            // User exists, update it
+            $user->update([
+                
+                'otp' => $otp,
+            ]);
+        } else {
+            // User does not exist, create a new one
+            $user = User::create([
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'name' => $request->name,
+                'area' => $request->area,
+                'password' => '12345678',
+                'role' => 'ci',
+                'status' => 'pending',
+                'otp' => $otp,
+            ]);
+        }
+       // dd($user);
+       Session::put('user', $user);
+       return redirect()->route('vendor_registration_successful');
+
+    }
+
+    public function vendor_registration_successful(){
+       
+        return view('frontend.vendor_registration_successful'); 
+    }
+
+    public function vendor_login(){
+        return view('frontend.vendor_login');
+    }
+
+    public function vendor_login_store(Request $request){
+        $request->validate([
+            'phone' => 'required|digits:11', // Adjust the validation rules as needed
+          
+        ]);
+        $user = User::where('phone', $request->phone)->first();
+        if ($user) {
+            if ($user->status == 'approved') {
+                Session::put('user', $user);
+               return redirect()->route('vendor_otp_form')->with('user', $user);
+            } else {
+                return redirect()->back()->with('error', 'Your account is not approved yet. Please contact support.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'No user found with this phone number.');
+        }
+    }
+
+    public function vendor_otp_form(){
+        $user = Session::get('user');
+        return view('frontend.vendor-otp-form', ['user'=>$user]);
+    }
+
+    public function vendor_otp_form_store(Request $request){
+      
+        $user = User::find($request->user_id);
+     
+        $entered_otp = $request->otp;
+    
+        if ($entered_otp == $user->otp) {
+           
+            Auth::login($user);
+            return redirect()->route('dashboard');
+        }
+        return redirect()->back()->with('error', 'The OTP you entered is incorrect. Please try again.');
+    }
 }

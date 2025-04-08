@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 @section('title')
-    Bills - Index
+    Bill - Index
 @endsection
 @section('content')
   <!-- Include SweetAlert CSS and JS -->
@@ -10,12 +10,12 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6 offset-3">
-            <h1>Bills</h1>
+            <h1>Bill</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Bills</li>
+              <li class="breadcrumb-item active">Bill</li>
             </ol>
           </div>
         </div>
@@ -29,10 +29,10 @@
           <!-- left column -->
              <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Bills</h3>
+                <h3 class="card-title">Bill</h3>
 
 
-                {{-- <a href="{{route('bill.create')}}" class="float-right btn btn-outline-dark btn-sm mb-2"><i class="fas fa-plus-square"></i></a> --}}
+                <a href="{{route('vendor.bill.create')}}" class="float-right btn btn-outline-dark btn-sm mb-2"><i class="fas fa-plus-square"></i></a>
 
 
 
@@ -45,10 +45,12 @@
                   <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Bill Date</th>
-                    <th>Bill Month & Year</th>
+                    <th>Mobile</th>
+                    <th>Month</th>
+                    <th>Year</th>
                     <th>Amount</th>
-                    <th>Vendor Name</th>
+                    <th>Received date</th>
+                   
                     <th>Action</th>
 
                   </tr>
@@ -59,29 +61,46 @@
                     <tr>
                       <td>{{ ++$key }}</td>
                       <td>{{$item->user->name}}</td>
-                      <td>{{$item->created_at->format('d M, Y')}}</td>
-                      <td>{{$item->month}} {{$item->year}}</td>
+                      <td>{{$item->user->phone}}</td>
+                      <td>{{$item->month}}</td>
+                      <td>{{$item->year}}</td>
                       <td>{{$item->amount}} Tk</td>
+                      <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F, Y') }}</td>
+
                       <td>
-                        @if (@$item->vendor->name == null)
-                            <span class="text-primary">Paid By Own</span>
-                        @else
-                            <span class="text-info">{{$item->vendor->name}}</span>
-                        @endif
-                       </td>
-                      <td>
-                        {{-- <a href="{{route('event.edit',[$item])}}" title="Edit">
+                        <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#descriptionModal{{$key}}"><i class="fas fa-eye"></i></button>
+
+                      
+                        <a href="{{route('vendor.bill.edit',[$item])}}" title="Edit">
                           <button class="btn btn-outline-info btn-sm"><i class="fas fa-pen-square"></i></button>
-                        </a> --}}
+                        </a>
                         <button class="btn btn-outline-danger btn-sm" title="Delete" onclick="confirmDelete({{ $item->id }})"><i class="fas fa-trash"></i></button>
-                        <form id="delete-form-{{ $item->id }}" action="{{route('event.destroy',[$item])}}" method="POST" style="display:none;">
+                        <form id="delete-form-{{ $item->id }}" action="{{route('vendor.bill.delete',[$item])}}" method="POST" style="display:none;">
                           @method('DELETE')
                           @csrf
                         </form>
                       </td>
                     </tr>
 
-       
+                    <!-- Modal -->
+                    {{-- <div class="modal fade" id="descriptionModal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel{{$key}}" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="descriptionModalLabel{{$key}}">Description</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            {!! $item->description !!}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div> --}}
                     @endforeach
 
                   </tbody>
@@ -89,10 +108,12 @@
                   <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Bill Date</th>
-                    <th>Bill Month & Year</th>
+                    <th>Mobile</th>
+                    <th>Month</th>
+                    <th>Year</th>
                     <th>Amount</th>
-                    <th>Vendor Name</th>
+                    <th>Received date</th>
+              
                     <th>Action</th>
 
                   </tr>

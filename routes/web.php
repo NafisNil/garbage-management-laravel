@@ -13,6 +13,7 @@ use App\Http\Controllers\TruckController;
 use App\Http\Controllers\ScheduleController;
 use  App\Http\Controllers\DustController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\VendorController;
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/mobile-form', [FrontendController::class, 'mobile_form'])->name('mobile_form');
@@ -24,6 +25,10 @@ Route::get('/registration-successful', [FrontendController::class, 'registration
 Route::get('/vendor-registration', [FrontendController::class, 'vendor_registration'])->name('vendor_registration');
 Route::post('/vendor-registration-store', [FrontendController::class, 'vendor_registration_store'])->name('vendor_registration_store');
 Route::get('/vendor-registration-successful', [FrontendController::class, 'vendor_registration_successful'])->name('vendor_registration_successful');
+Route::get('/vendor-login', [FrontendController::class, 'vendor_login'])->name('vendor_login');
+Route::post('/vendor-login-store', [FrontendController::class, 'vendor_login_store'])->name('vendor_login_store');
+Route::get('/vendor-otp-form', [FrontendController::class, 'vendor_otp_form'])->name('vendor_otp_form');
+Route::post('/vendor-otp-form-store', [FrontendController::class, 'vendor_otp_form_store'])->name('vendor_otp_form_store');
 
 Route::middleware(['auth', 'user'])->group(function () {
 Route::get('/profile-update', [FrontendController::class, 'profile_update'])->name('profile_update');
@@ -61,6 +66,12 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('complain-assigned/{id}', [AdminController::class, 'complain_assigned'])->name('complain.assigned');
   //  Route::get('complain-processed/{id}', [AdminController::class, 'complain_processed'])->name('complain.processed');
     Route::get('complain-completed/{id}', [AdminController::class, 'complain_completed'])->name('complain.completed');
+
+    Route::get('vendor-index', [AdminController::class, 'vendor_index'])->name('vendor.index');
+    Route::get('vendor-approve/{id}', [AdminController::class, 'vendor_approve'])->name('vendor.approve');
+    Route::get('vendor-reject/{id}', [AdminController::class, 'vendor_reject'])->name('vendor.reject');
+    Route::delete('vendor-delete/{id}', [AdminController::class, 'vendor_delete'])->name('vendor.delete');
+
     Route::resources([
       
       'general' => GeneralController::class,
@@ -71,6 +82,18 @@ Route::middleware('auth', 'admin')->group(function () {
       'schedule' => ScheduleController::class,
       'dust' => DustController::class,
     ]);
+
+});
+
+
+Route::middleware('auth', 'ci')->group(function () {
+  Route::get('vendor-bill-index', [VendorController::class, 'bill_index'])->name('vendor.bill.index');
+  Route::get('vendor-bill-create', [VendorController::class, 'bill_create'])->name('vendor.bill.create');
+  Route::post('vendor-bill-store', [VendorController::class, 'bill_store'])->name('vendor.bill.store');
+  Route::get('vendor-bill-edit/{id}', [VendorController::class, 'bill_edit'])->name('vendor.bill.edit');
+  Route::PUT('vendor-bill-update/{id}', [VendorController::class, 'bill_update'])->name('vendor.bill.update');
+  Route::DELETE('vendor-bill-delete/{id}', [VendorController::class, 'bill_destroy'])->name('vendor.bill.delete');
+
 
 });
 
